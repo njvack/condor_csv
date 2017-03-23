@@ -1,4 +1,4 @@
-# condor_csv: Make HTCondor submit files from CSV
+# condor_csv: Make HTCondor submit files from CSV files
 
 Creating the submit files for HTCondor can be annoying. The [syntax is rather byzantine](http://research.cs.wisc.edu/htcondor/manual/current/condor_submit.html) and it's not so easy to find the lines you want to copy and change to add another job to your queue.
 
