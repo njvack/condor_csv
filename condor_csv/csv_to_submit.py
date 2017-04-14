@@ -46,6 +46,8 @@ def transpose_nested(l):
 
 
 def strip_whitespace(nested_list):
+    # Strip whitespace and the UTF8 \ufeff BOM that Office adds from any
+    # cell
     return [
         [val.strip().replace("\ufeff", "") for val in row]
         for row in nested_list]
