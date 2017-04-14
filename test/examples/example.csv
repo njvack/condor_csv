@@ -1,0 +1,1 @@
+﻿Universe,Executable,#Subject,Arguments,Log,Output,Error,#Skipvanilla,/usr/bin/ls,1,/tmp/1*,/tmp/1.log,/tmp/1.out,/tmp/1.err,vanilla,/usr/bin/ls,2,/tmp/2*,/tmp/2.log,/tmp/2.out,/tmp/2.err,vanilla,/usr/bin/ls,3p,/tmp/3p*,/tmp/3p.log,/tmp/3p.out,/tmp/3p.err,1
