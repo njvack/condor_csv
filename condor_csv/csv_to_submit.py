@@ -103,6 +103,7 @@ def _make_skip_column(headers, data):
 
 
 def _make_constants_varyings(headers, data):
+    # Split the headers and data into constant and varying lists
     usage_counts = [len(set(col)) for col in data]
     constants = []
     varyings = []
@@ -133,12 +134,14 @@ def make_constant_varying_skip(nested_list):
 
 
 def write_constants(constants, out):
+    # Write the constant parts of the submit file to the submit output
     for attribute, value in constants:
         out.write("{0} = {1}\n".format(attribute, value))
     out.write("\n")
 
 
 def write_varyings(varyings, skips, out):
+    # Write the per-job clauses to the submit output
     for rownum, skip in enumerate(skips):
         comment = ""
         if skip:
@@ -170,6 +173,7 @@ def make_submit_from_csvlike(csvlike, out):
 
 @contextmanager
 def file_or_stdout(filename=None):
+    # Create an object with the same API whether it's a file or stream
     out_stream = sys.stdout
     if filename:
         out_stream = open(filename, "w")
