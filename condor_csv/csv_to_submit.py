@@ -190,7 +190,7 @@ def make_submit(argv):
         logger.setLevel(logging.DEBUG)
     logger.debug(pargs)
     with file_or_stdout(pargs.get('--output')) as out_stream:
-        infile = io.open(pargs.get('<input_file>', 'r'), encoding='utf-8-sig')
+        infile = io.open(pargs.get('<input_file>', 'rU'), encoding='utf-8-sig')
         reader = csv.reader(infile)
         make_submit_from_csvlike(reader, out_stream)
 
