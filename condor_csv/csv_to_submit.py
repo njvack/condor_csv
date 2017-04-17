@@ -180,18 +180,21 @@ def file_or_stdout(filename=None):
             out_stream.close()
 
 
-def main(argv):
+def main():
     # Parse the command line
     # Open and clean (eg, strip()) the input file
     # Open the output
     # Make the submit from the input
+    argv = sys.argv[1:]
     pargs = docopt(__doc__, argv, version=_metadata.__version__)
     if pargs.get('--verbose'):
         logger.setLevel(logging.DEBUG)
-    with file_or_stdout(pargs.get('--output')) as out_stream:
-        out_stream.write("hello")
     logger.debug(pargs)
+    with file_or_stdout(pargs.get('--output')) as out_stream:
+        infile = io.open(pargs.get('<input_file>', 'r'), encoding='utf-8-sig')
+        reader = csv.reader(infile)
+        make_submit_from_csvlike(reader, out_stream)
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    main()
