@@ -36,10 +36,10 @@ setup(
         #   3 - Alpha
         #   4 - Beta
         #   5 - Production/Stable
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
 
         # Indicate who your project is intended for
-        'Intended Audience :: Scientists',
+        'Intended Audience :: Science/Research',
         'Topic :: Software Development :: Build Tools',
 
         # Pick your license as you wish (should match "license" above)
