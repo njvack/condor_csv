@@ -12,8 +12,6 @@ def get_locals(filename):
 
 metadata = get_locals(os.path.join('condor_csv', '_metadata.py'))
 
-print(metadata)
-
 setup(
     name='condor_csv',
 
