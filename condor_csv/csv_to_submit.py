@@ -184,12 +184,7 @@ def file_or_stdout(filename=None):
             out_stream.close()
 
 
-def main():
-    # Parse the command line
-    # Open and clean (eg, strip()) the input file
-    # Open the output
-    # Make the submit from the input
-    argv = sys.argv[1:]
+def make_submit(argv):
     pargs = docopt(__doc__, argv, version=_metadata.__version__)
     if pargs.get('--verbose'):
         logger.setLevel(logging.DEBUG)
@@ -199,6 +194,14 @@ def main():
         reader = csv.reader(infile)
         make_submit_from_csvlike(reader, out_stream)
 
+
+def main():
+    # Parse the command line
+    # Open and clean (eg, strip()) the input file
+    # Open the output
+    # Make the submit from the input
+    argv = sys.argv[1:]
+    make_submit(argv)
 
 if __name__ == '__main__':
     main()
