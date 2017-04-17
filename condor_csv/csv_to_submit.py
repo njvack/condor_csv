@@ -25,14 +25,17 @@ from __future__ import (
     division,
     unicode_literals)
 
-import logging
 import sys
-from .vendor.docopt import docopt
-from contextlib import contextmanager
+import io
+import csv
 import re
+from contextlib import contextmanager
+
+from condor_csv.vendor.docopt import docopt
 
 from condor_csv import _metadata
 
+import logging
 logging.basicConfig(format='%(message)s')
 logger = logging.getLogger()
 logger.setLevel(logging.WARN)
