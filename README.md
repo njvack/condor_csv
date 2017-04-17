@@ -16,9 +16,78 @@ The input is a standard CSV file, as written by Excel. Here are the rules:
 * Header columns that begin with # indicate comments, and will appear exactly where regular columns would go.
 * The only specially-handled column is one called "#skip". If this column appears, rows where that is any value other than blank, "0", "false", or "n" (case insensitive) will be commented out when added to the submit file.
 
-That's it.
+This ships with one command-line script, `csv_to_submit`
 
-More documentation (including a command line reference and example) coming soon.
+## `csv_to_submit`
+
+```Create a HTCondor submit file from a CSV file.
+
+Input is a file formatted as by Excel's CSV writing. We take this and, for
+every row, write a job entry for an HTCondor submit file. Command names are
+expected in the header row.
+
+Columns with values that are the same in every row (often for universe,
+executable, and getenv commands) will be written at the top before any per-job
+clauses. This is only for human readability -- the submit file would work the
+same either way.
+
+The only specially-handled case is a column labeled "#skip". If this column
+exists, anywhere it has a value other than blank, "0", "f, false", or "n"
+the corresponding job clause will be commented out.
+
+Documentation for submit file commands is available here:
+http://research.cs.wisc.edu/htcondor/manual/current/condor_submit.html
+
+Usage:
+  condor_csv [options] <input_file>
+  condor_csv -h
+
+Options:
+  -h                      Show this screen
+  --version               Show version
+  --output=<output_file>  Write to this file instead of standard output
+  -v, --verbose           Print debugging information to standard error
+```
+
+## Example
+
+The following CSV file:
+
+<table>
+<tr><th>Universe</th><th>Executable</th><th>#Subject</th><th>Arguments</th><th>Log</th><th>Output</th><th>Error</th><th>#Skip</th></tr>
+<tr><td>vanilla</td><td>/usr/bin/ls</td><td>1</td><td>/tmp/1*</td><td>/tmp/1.log</td><td>/tmp/1.out</td><td>/tmp/1.err</td><td></td></tr>
+<tr><td>vanilla</td><td>/usr/bin/ls</td><td>2</td><td>/tmp/2*</td><td>/tmp/2.log</td><td>/tmp/2.out</td><td>/tmp/2.err</td><td></td></tr>
+<tr><td>vanilla</td><td>/usr/bin/ls</td><td>3p</td><td>/tmp/3p*</td><td>/tmp/3p.log</td><td>/tmp/3p.out</td><td>/tmp/3p.err</td><td>1</td></tr>
+</table>
+
+Will turn into:
+
+```
+Universe = vanilla
+Executable = /usr/bin/ls
+
+#Subject = 1
+Arguments = /tmp/1*
+Log = /tmp/1.log
+Output = /tmp/1.out
+Error = /tmp/1.err
+Queue
+
+#Subject = 2
+Arguments = /tmp/2*
+Log = /tmp/2.log
+Output = /tmp/2.out
+Error = /tmp/2.err
+Queue
+
+# #Subject = 3p
+# Arguments = /tmp/3p*
+# Log = /tmp/3p.log
+# Output = /tmp/3p.out
+# Error = /tmp/3p.err
+# Queue
+
+```
 
 
 ## Credits
