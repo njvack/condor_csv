@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""Write a HTCondor submit file from a CSV file.
+"""Create a HTCondor submit file from a CSV file.
 
 Input is a file formatted as by Excel's CSV writing. We take this and, for
 every row, write a job entry for an HTCondor submit file. Command names are
