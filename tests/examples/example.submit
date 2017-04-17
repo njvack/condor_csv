@@ -1,0 +1,24 @@
+Universe = vanilla
+Executable = /usr/bin/ls
+
+#Subject = 1
+Arguments = /tmp/1*
+Log = /tmp/1.log
+Output = /tmp/1.out
+Error = /tmp/1.err
+Queue
+
+#Subject = 2
+Arguments = /tmp/2*
+Log = /tmp/2.log
+Output = /tmp/2.out
+Error = /tmp/2.err
+Queue
+
+# #Subject = 3p
+# Arguments = /tmp/3p*
+# Log = /tmp/3p.log
+# Output = /tmp/3p.out
+# Error = /tmp/3p.err
+# Queue
+
