@@ -10,7 +10,7 @@ def get_locals(filename):
     return l
 
 
-metadata = get_locals(os.path.join('condor_csv', '__init__.py'))
+metadata = get_locals(os.path.join('condor_csv', '_metadata.py'))
 
 print(metadata)
 
