@@ -1,15 +1,27 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" Write a HTCondor submit file from a CSV file.
+"""Write a HTCondor submit file from a CSV file.
 
-The submit file will have one Queue statement per row.
+Input is a file formatted as by Excel's CSV writing. We take this and, for
+every row, write a job entry for an HTCondor submit file. Command names are
+expected in the header row.
 
-This is quite experimental at the moment, email Nate Vack <njvack@wisc.edu>
-with any comments or suggestions.
+Columns with values that are the same in every row (often for universe,
+executable, and getenv commands) will be written at the top before any per-job
+clauses. This is only for human readability -- the submit file would work the
+same either way.
+
+The only specially-handled case is a column labeled "#skip". If this column
+exists, anywhere it has a value other than blank, "0", "f, false", or "n"
+the corresponding job clause will be commented out.
+
+Documentation for submit file commands is available here:
+http://research.cs.wisc.edu/htcondor/manual/current/condor_submit.html
 
 Usage:
   condor_csv [options] <input_file>
+  condor_csv -h
 
 Options:
   -h                      Show this screen
