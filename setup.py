@@ -74,7 +74,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points={
         'console_scripts': [
-            'csv_to_submit=csv_to_submit:main',
+            'csv_to_submit=condor_csv.csv_to_submit:main',
         ],
     },
 )
